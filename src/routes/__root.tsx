@@ -79,6 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Bihar T10 League 2026" },
+      { name: "twitter:description", content: "Bihar's first city-franchise tennis-ball cricket league." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/735f43b8-41cb-47b2-b4fc-dc2376c18ed0/id-preview-7cf3f348--2078f5cf-52f2-433d-8603-6fd5831f8af1.lovable.app-1778567135430.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/735f43b8-41cb-47b2-b4fc-dc2376c18ed0/id-preview-7cf3f348--2078f5cf-52f2-433d-8603-6fd5831f8af1.lovable.app-1778567135430.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
