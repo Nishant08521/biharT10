@@ -11,15 +11,24 @@ export const Route = createFileRoute("/teams")({
   }),
 });
 
+import patnaLogo from "@/assets/patna.png";
+import gayaLogo from "@/assets/gaya.png";
+import muzaffarpurLogo from "@/assets/muzaffarpur.png";
+import bhagalpurLogo from "@/assets/bhagalpur.png";
+import darbhangaLogo from "@/assets/darbhanga.png";
+import purniaLogo from "@/assets/purnia.png";
+import araLogo from "@/assets/ara.png";
+import begusaraiLogo from "@/assets/begusarai.png";
+
 const teams = [
-  { name: "PATNA PIONEERS", city: "Patna", color: "from-red-500 to-amber-500", motto: "Capital pride." },
-  { name: "GAYA GLADIATORS", city: "Gaya", color: "from-purple-500 to-rose-500", motto: "Strike to win." },
-  { name: "MUZAFFARPUR MAVERICKS", city: "Muzaffarpur", color: "from-emerald-500 to-cyan-500", motto: "Fearless cricket." },
-  { name: "BHAGALPUR BLAZE", city: "Bhagalpur", color: "from-orange-500 to-red-600", motto: "Burn bright." },
-  { name: "DARBHANGA DIAMONDS", city: "Darbhanga", color: "from-sky-500 to-indigo-500", motto: "Cut sharp." },
-  { name: "PURNIA PANTHERS", city: "Purnia", color: "from-yellow-400 to-amber-600", motto: "Hunt as one." },
-  { name: "ARA AVENGERS", city: "Ara", color: "from-fuchsia-500 to-pink-600", motto: "We fight back." },
-  { name: "BEGUSARAI BULLS", city: "Begusarai", color: "from-lime-400 to-emerald-600", motto: "Charge forward." },
+  { name: "PATNA PIONEERS", city: "Patna", color: "from-red-500 to-amber-500", motto: "Capital pride.", logo: patnaLogo },
+  { name: "GAYA GLADIATORS", city: "Gaya", color: "from-purple-500 to-rose-500", motto: "Strike to win.", logo: gayaLogo },
+  { name: "MUZAFFARPUR MAVERICKS", city: "Muzaffarpur", color: "from-emerald-500 to-cyan-500", motto: "Fearless cricket.", logo: muzaffarpurLogo },
+  { name: "BHAGALPUR BLAZE", city: "Bhagalpur", color: "from-orange-500 to-red-600", motto: "Burn bright.", logo: bhagalpurLogo },
+  { name: "DARBHANGA DIAMONDS", city: "Darbhanga", color: "from-sky-500 to-indigo-500", motto: "Cut sharp.", logo: darbhangaLogo },
+  { name: "PURNIA PANTHERS", city: "Purnia", color: "from-yellow-400 to-amber-600", motto: "Hunt as one.", logo: purniaLogo },
+  { name: "ARA AVENGERS", city: "Ara", color: "from-fuchsia-500 to-pink-600", motto: "We fight back.", logo: araLogo },
+  { name: "BEGUSARAI BULLS", city: "Begusarai", color: "from-lime-400 to-emerald-600", motto: "Charge forward.", logo: begusaraiLogo },
 ];
 
 function Teams() {
@@ -36,9 +45,9 @@ function Teams() {
               <div className={`absolute inset-0 bg-gradient-to-br ${t.color} opacity-80 group-hover:opacity-100 transition-opacity`} />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               <div className="relative h-full p-6 flex flex-col justify-between text-foreground">
-                <div className="flex justify-between items-start">
-                  <div className="display text-7xl text-foreground/30">0{i + 1}</div>
-                  <div className="text-[10px] tracking-[0.3em] bg-background/40 backdrop-blur px-3 py-1 rounded-full">FRANCHISE</div>
+                <div className="absolute top-6 left-6 display text-7xl text-foreground/30">0{i + 1}</div>
+                <div className="flex-1 flex items-center justify-center p-6">
+                  <img src={t.logo} alt={`${t.name} Logo`} className="h-40 w-40 md:h-48 md:w-48 object-contain drop-shadow-glow transform group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
                   <div className="display text-3xl leading-tight">{t.name}</div>

@@ -7,6 +7,15 @@ import bowler from "@/assets/bowler.jpg";
 import trophy from "@/assets/trophy.jpg";
 import ambassador from "@/assets/ambassador.jpg";
 
+import patnaLogo from "@/assets/patna.png";
+import gayaLogo from "@/assets/gaya.png";
+import muzaffarpurLogo from "@/assets/muzaffarpur.png";
+import bhagalpurLogo from "@/assets/bhagalpur.png";
+import darbhangaLogo from "@/assets/darbhanga.png";
+import purniaLogo from "@/assets/purnia.png";
+import araLogo from "@/assets/ara.png";
+import begusaraiLogo from "@/assets/begusarai.png";
+
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
@@ -17,7 +26,27 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const cities = ["PATNA", "GAYA", "MUZAFFARPUR", "BHAGALPUR", "DARBHANGA", "PURNIA", "ARA", "BEGUSARAI"];
+const teams = [
+  { name: "PATNA", logo: patnaLogo },
+  { name: "GAYA", logo: gayaLogo },
+  { name: "MUZAFFARPUR", logo: muzaffarpurLogo },
+  { name: "BHAGALPUR", logo: bhagalpurLogo },
+  { name: "DARBHANGA", logo: darbhangaLogo },
+  { name: "PURNIA", logo: purniaLogo },
+  { name: "ARA", logo: araLogo },
+  { name: "BEGUSARAI", logo: begusaraiLogo },
+];
+
+const teamLogos: Record<string, string> = {
+  "PATNA PIONEERS": patnaLogo,
+  "GAYA GLADIATORS": gayaLogo,
+  "MUZAFFARPUR MAVERICKS": muzaffarpurLogo,
+  "BHAGALPUR BLAZE": bhagalpurLogo,
+  "DARBHANGA DIAMONDS": darbhangaLogo,
+  "PURNIA PANTHERS": purniaLogo,
+  "ARA AVENGERS": araLogo,
+  "BEGUSARAI BULLS": begusaraiLogo,
+};
 
 function Home() {
   return (
@@ -60,10 +89,10 @@ function Home() {
       {/* TICKER */}
       <section className="bg-ink/60 border-y border-border py-5 overflow-hidden">
         <div className="flex animate-ticker whitespace-nowrap">
-          {[...cities, ...cities, ...cities].map((c, i) => (
+          {[...teams, ...teams, ...teams].map((t, i) => (
             <div key={i} className="flex items-center gap-6 px-8">
               <Star className="h-4 w-4 text-gold" />
-              <span className="display text-2xl tracking-[0.3em] text-foreground/70">{c}</span>
+              <span className="display text-2xl tracking-[0.3em] text-foreground/70">{t.name}</span>
             </div>
           ))}
         </div>
@@ -149,7 +178,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-5 gap-12 items-center">
           <div className="md:col-span-2 relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden border-4 border-gold shadow-gold">
-              <img src={ambassador} alt="League Ambassador" className="h-full w-full object-cover" width={1024} height={1280} loading="lazy" />
+              <img src="https://bihart10league.com/wp-content/uploads/2026/05/IMG_2378-1.JPG-2048x1817.jpeg" alt="League Ambassador" className="h-full w-full object-cover" width={1024} height={1280} loading="lazy" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-gradient-gold text-gold-foreground px-6 py-3 rounded-md font-bold tracking-wider text-sm">
               LEAGUE AMBASSADOR
@@ -180,13 +209,16 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {cities.map((c, i) => (
-            <Link to="/teams" key={c} className="group relative aspect-square rounded-2xl overflow-hidden border border-border hover:border-gold/60 transition-all bg-card">
+          {teams.map((t, i) => (
+            <Link to="/teams" key={t.name} className="group relative aspect-square rounded-2xl overflow-hidden border border-border hover:border-gold/60 transition-all bg-card">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-transparent to-gold/20 opacity-60 group-hover:opacity-90 transition-opacity" />
               <div className="relative h-full flex flex-col justify-between p-5">
-                <div className="display text-5xl text-gold/80">0{i + 1}</div>
+                <div className="absolute top-5 left-5 display text-4xl text-gold/80">0{i + 1}</div>
+                <div className="flex-1 flex items-center justify-center p-4">
+                  <img src={t.logo} alt={`${t.name} Logo`} className="h-28 w-28 md:h-32 md:w-32 object-contain transition-all transform group-hover:scale-110 duration-500 drop-shadow-glow" />
+                </div>
                 <div>
-                  <div className="display text-2xl">{c}</div>
+                  <div className="display text-2xl">{t.name}</div>
                   <div className="text-[10px] tracking-[0.3em] text-muted-foreground mt-1">FRANCHISE</div>
                 </div>
               </div>
@@ -201,21 +233,34 @@ function Home() {
         <h2 className="display text-5xl md:text-6xl mb-12">Match <span className="text-gradient-gold">schedule.</span></h2>
         <div className="space-y-3">
           {[
-            { d: "FEB 14", t1: "PATNA PIONEERS", t2: "GAYA GLADIATORS", v: "Moin-ul-Haq Stadium, Patna", time: "7:00 PM" },
-            { d: "FEB 15", t1: "MUZAFFARPUR MAVERICKS", t2: "BHAGALPUR BLAZE", v: "Bhagalpur Cricket Ground", time: "7:00 PM" },
-            { d: "FEB 16", t1: "DARBHANGA DIAMONDS", t2: "PURNIA PANTHERS", v: "Darbhanga Stadium", time: "7:00 PM" },
-            { d: "FEB 17", t1: "ARA AVENGERS", t2: "BEGUSARAI BULLS", v: "Begusarai Cricket Ground", time: "7:00 PM" },
+            { id: "1", d: "FEB 14", t1: "PATNA PIONEERS", t2: "GAYA GLADIATORS", v: "Moin-ul-Haq Stadium, Patna", time: "7:00 PM" },
+            { id: "2", d: "FEB 15", t1: "MUZAFFARPUR MAVERICKS", t2: "BHAGALPUR BLAZE", v: "Bhagalpur Cricket Ground", time: "7:00 PM" },
+            { id: "3", d: "FEB 16", t1: "DARBHANGA DIAMONDS", t2: "PURNIA PANTHERS", v: "Darbhanga Stadium", time: "7:00 PM" },
+            { id: "4", d: "FEB 17", t1: "ARA AVENGERS", t2: "BEGUSARAI BULLS", v: "Begusarai Cricket Ground", time: "7:00 PM" },
           ].map((m) => (
-            <div key={m.d} className="grid md:grid-cols-12 gap-4 items-center bg-card border border-border rounded-xl p-5 hover:border-gold/40 transition-colors">
+            <Link
+              key={m.id}
+              to="/match/$matchId"
+              params={{ matchId: m.id }}
+              className="grid md:grid-cols-12 gap-4 items-center bg-card border border-border rounded-xl p-5 hover:border-gold/40 transition-colors group"
+            >
               <div className="md:col-span-2 display text-3xl text-gradient-gold">{m.d}</div>
               <div className="md:col-span-6 flex items-center gap-3 md:gap-6">
-                <div className="display text-xl text-right flex-1">{m.t1}</div>
+                <div className="flex items-center gap-3 flex-1 justify-end">
+                  <div className="display text-lg md:text-xl text-right">{m.t1}</div>
+                  <img src={teamLogos[m.t1]} alt="" className="h-10 w-10 object-contain" />
+                </div>
                 <div className="text-gold text-xs tracking-[0.3em] px-3 py-1 border border-gold/40 rounded-full">VS</div>
-                <div className="display text-xl flex-1">{m.t2}</div>
+                <div className="flex items-center gap-3 flex-1">
+                  <img src={teamLogos[m.t2]} alt="" className="h-10 w-10 object-contain" />
+                  <div className="display text-lg md:text-xl">{m.t2}</div>
+                </div>
               </div>
               <div className="md:col-span-3 text-sm text-muted-foreground flex items-center gap-2"><MapPin className="h-4 w-4 text-gold" />{m.v}</div>
-              <div className="md:col-span-1 text-sm text-gold flex items-center gap-2 md:justify-end"><Calendar className="h-4 w-4" />{m.time}</div>
-            </div>
+              <div className="md:col-span-1 text-sm text-gold flex items-center gap-2 md:justify-end">
+                <Calendar className="h-4 w-4" />{m.time}
+              </div>
+            </Link>
           ))}
         </div>
       </section>

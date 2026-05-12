@@ -7,6 +7,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/teams", label: "Franchises" },
+  { to: "/match-center", label: "Match Center" },
   { to: "/schedule", label: "Schedule" },
   { to: "/register", label: "Register" },
   { to: "/contact", label: "Contact" },

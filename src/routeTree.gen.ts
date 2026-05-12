@@ -13,9 +13,11 @@ import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as MatchCenterRouteImport } from './routes/match-center'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MatchMatchIdRouteImport } from './routes/match.$matchId'
 
 const TeamsRoute = TeamsRouteImport.update({
   id: '/teams',
@@ -37,6 +39,11 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatchCenterRoute = MatchCenterRouteImport.update({
+  id: '/match-center',
+  path: '/match-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -52,34 +59,45 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatchMatchIdRoute = MatchMatchIdRouteImport.update({
+  id: '/match/$matchId',
+  path: '/match/$matchId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/match-center': typeof MatchCenterRoute
   '/register': typeof RegisterRoute
   '/schedule': typeof ScheduleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/teams': typeof TeamsRoute
+  '/match/$matchId': typeof MatchMatchIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/match-center': typeof MatchCenterRoute
   '/register': typeof RegisterRoute
   '/schedule': typeof ScheduleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/teams': typeof TeamsRoute
+  '/match/$matchId': typeof MatchMatchIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/match-center': typeof MatchCenterRoute
   '/register': typeof RegisterRoute
   '/schedule': typeof ScheduleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/teams': typeof TeamsRoute
+  '/match/$matchId': typeof MatchMatchIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,38 +105,46 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/match-center'
     | '/register'
     | '/schedule'
     | '/sitemap.xml'
     | '/teams'
+    | '/match/$matchId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/match-center'
     | '/register'
     | '/schedule'
     | '/sitemap.xml'
     | '/teams'
+    | '/match/$matchId'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
+    | '/match-center'
     | '/register'
     | '/schedule'
     | '/sitemap.xml'
     | '/teams'
+    | '/match/$matchId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  MatchCenterRoute: typeof MatchCenterRoute
   RegisterRoute: typeof RegisterRoute
   ScheduleRoute: typeof ScheduleRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TeamsRoute: typeof TeamsRoute
+  MatchMatchIdRoute: typeof MatchMatchIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -151,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/match-center': {
+      id: '/match-center'
+      path: '/match-center'
+      fullPath: '/match-center'
+      preLoaderRoute: typeof MatchCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -172,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/match/$matchId': {
+      id: '/match/$matchId'
+      path: '/match/$matchId'
+      fullPath: '/match/$matchId'
+      preLoaderRoute: typeof MatchMatchIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -179,11 +219,23 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  MatchCenterRoute: MatchCenterRoute,
   RegisterRoute: RegisterRoute,
   ScheduleRoute: ScheduleRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TeamsRoute: TeamsRoute,
+  MatchMatchIdRoute: MatchMatchIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
