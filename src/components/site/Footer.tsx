@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Twitter, Youtube, Mail, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
+import affiliated from "@/assets/affiliated.png";
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <img src={logo} alt="" className="h-12 w-12" width={48} height={48} loading="lazy" />
+            <img src={logo} alt="" className="h-14 w-auto" width={56} height={56} loading="lazy" />
             <div>
               <div className="display text-xl text-gold">BIHAR T10</div>
               <div className="text-[10px] tracking-[0.3em] text-muted-foreground">LEAGUE 2026</div>
@@ -18,6 +19,12 @@ export function Footer() {
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">
             The first professional city-based franchise league bringing Bihar's tennis-ball talent to the national stage.
           </p>
+          <div className="mt-6 flex items-center gap-3">
+            <img src={affiliated} alt="Affiliated to ISPL" className="h-20 w-20 object-contain" width={80} height={80} loading="lazy" />
+            <div className="text-[10px] tracking-[0.3em] text-muted-foreground leading-relaxed">
+              OFFICIALLY<br />AFFILIATED
+            </div>
+          </div>
         </div>
 
         <div>
@@ -33,8 +40,8 @@ export function Footer() {
         <div>
           <h4 className="text-sm tracking-[0.2em] text-gold mb-4">CONTACT</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-gold" /> Patna, Bihar, India</li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-gold" /> info@bihart10league.com</li>
+            <li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 text-gold" /><span>Patna, Bihar, India</span></li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 text-gold" /><span>info@bihart10league.com</span></li>
           </ul>
         </div>
 

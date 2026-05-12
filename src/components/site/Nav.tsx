@@ -18,8 +18,8 @@ export function Nav() {
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Bihar T10 League" className="h-12 w-12 object-contain" width={48} height={48} />
-          <div className="leading-tight">
+          <img src={logo} alt="Bihar T10 League" className="h-14 w-auto object-contain" width={56} height={56} />
+          <div className="leading-tight hidden sm:block">
             <div className="display text-xl text-gold">BIHAR T10</div>
             <div className="text-[10px] tracking-[0.3em] text-muted-foreground">LEAGUE 2026</div>
           </div>
