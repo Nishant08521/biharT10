@@ -129,7 +129,7 @@ function Home() {
             { icon: Zap, t: "Opportunity", d: "Trials, contracts and a clear path to professional cricket." },
             { icon: ShieldCheck, t: "Integrity", d: "Transparent selection, fair play and safeguarding at every step." },
           ].map((p) => (
-            <div key={t} className="group relative bg-card border border-border rounded-2xl p-8 hover:border-gold/60 transition-colors">
+            <div key={p.t} className="group relative bg-card border border-border rounded-2xl p-8 hover:border-gold/60 transition-colors">
               <div className="h-12 w-12 rounded-xl bg-gradient-gold grid place-items-center text-gold-foreground mb-6">
                 <p.icon className="h-6 w-6" />
               </div>
