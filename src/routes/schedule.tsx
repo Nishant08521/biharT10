@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/schedule")({
   component: Schedule,
